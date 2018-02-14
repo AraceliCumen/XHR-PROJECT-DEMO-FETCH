@@ -1,40 +1,47 @@
-alert('hola');
-window.onload = () => {
+window.onload = function () {
   const form = document.getElementById('search-form');
   const searchField = document.getElementById('search-keyword');
   const responseContainer = document.getElementById('response-container');
-  let searchedForText;
-  let cl = console.log();
+  form.addEventListener('submit', function (event) {
 
-  form.addEventListener('submit', (event) => {
     event.preventDefault();
     responseContainer.innerHTML = '';
-    searchedForText = searchField.value;
-    getNews();
+    const searchedForText = searchField.value;
+    
+    // Utilizando FETCH
+    fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=65082f4668484e9484931f976feb3d4c`)
+      .then(handleErrors)
+      .then(parseJSON)
+      .then(getNews)
+      .catch(displayErrors);
   });
 
-  getNews = () => {
-    const articleRequest = new XMLHttpRequest();
-    articleRequest.open('GET', `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchedForText}&api-key=65082f4668484e9484931f976feb3d4c`);
-    articleRequest.onload = addNews;
-    articleRequest.onerror = handleError;
-    articleRequest.send();
+  function handleErrors(res) {
+    if (!res.ok) {
+      throw Error(res.status);
+    }
+    return res;
   }
 
-  handleError = () => {
-    cl('se ha presentado un error');
+  function parseJSON(res) {
+    return res.json()
+      .then(function(data) {
+        return data.response.docs;
+      });
   }
 
-  addNews = () => {
-    const data = JSON.parse(this.responseText);
-    const response = data.response.docs;
+  function getNews(response) {
     response.forEach(function(element) {
-      cl(element);
       const snippet = element.snippet;
       let li = document.createElement('li');
-      li.className = 'articleClass';
+      li.className = 'article';
       li.innerText = snippet;
       responseContainer.appendChild(li);
     });
+  }
+
+  function displayErrors(err) {
+    console.log('INSIDE displayErrors!');
+    console.log(err);
   }
 };
