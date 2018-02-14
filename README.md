@@ -2,7 +2,7 @@
 
 ## Objetivos
 
-Poner en practica el uso de AJAX, esencialmente haciendo uso de XMLHttpRequest, reemplazando este objeto por fetch.
+Poner en practica el uso de AJAX, esencialmente haciendo uso de XMLHttpRequest, y en otro lado reemplazar este objeto por fetch.
 
 ## Herramientas Utilizadas
 

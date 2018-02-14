@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Haciendo Solicitudes asincronas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kavivanar" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="shortcut icon" href="../assets/imgs/icon.png">
+</head>
+<body class="">
+  <header>
+    <div class="row">
+      <div class="col s12">
+        <h1 class="color-white center-align font-2">¿Qué te interesa saber hoy?</h1>
+      </div>
+      <div class="col s12">
+        <div class="site-container">
+          <form id="search-form">
+            <label for="ser"></label>
+            <input class="col s9" type="text" name="search-keyword" id="search-keyword" placeholder="e.g. Android" required>
+            <!-- <a class=" col s3 waves-effect waves-light btn" id="submit-btn">Submit</a> -->
+            <input id="submit-btn" type="submit" value="SUBMIT" class="submit col s3">
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="site-container">
+    <ul id="response-container">
+    </ul>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript" src="../js/fetch.js"></script>
+</body>
+</html>
